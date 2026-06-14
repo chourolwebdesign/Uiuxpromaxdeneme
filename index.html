@@ -86,12 +86,13 @@
   <main id="top">
     <!-- ============================ HERO ============================ -->
     <section class="hero" id="hero">
-      <div class="bg-image hero-bg" data-parallax="0.05" aria-hidden="true">
-        <img data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_110657_6a4b1c14-4238-4bb0-a4dc-999192fac0de_min.webp" alt="" width="2688" height="1536" decoding="async" />
+      <div class="bg-image hero-bg hero-video" data-parallax="0.05" aria-hidden="true">
+        <video data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_175543_dcd8bf86-c8a1-4f95-9e07-525be2187bd1.mp4" poster="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_110657_6a4b1c14-4238-4bb0-a4dc-999192fac0de_min.webp" muted loop autoplay playsinline preload="none" width="1344" height="768"></video>
       </div>
       <div class="orb orb-1" data-parallax="0.18"></div>
       <div class="orb orb-2" data-parallax="0.10"></div>
       <div class="orb orb-3" data-parallax="0.26"></div>
+      <div class="particles" id="particles" aria-hidden="true"></div>
 
       <!-- Interactive 3D glass cube -->
       <div class="scene-3d" data-parallax="0.12" aria-hidden="true">
@@ -208,6 +209,7 @@
           <div class="marquee-track" id="logoTrack">
             <!-- duplicated in JS for seamless loop -->
           </div>
+          <div class="marquee-track reverse" id="logoTrack2" aria-hidden="true"></div>
         </div>
       </div>
     </section>
@@ -237,24 +239,28 @@
             <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2a7 7 0 0 0-4 12.7V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.3A7 7 0 0 0 12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 22h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
             <h3>AI insights, on autopilot</h3>
             <p>Lumen watches your metrics 24/7 and tells you why they moved — in plain English, before you even ask.</p>
+            <div class="feature-media"><img data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_175546_277a534b-244d-4401-8b6b-1eaa2514574a_min.webp" alt="" width="1216" height="896" loading="lazy" decoding="async"></div>
           </article>
 
           <article class="card b-span-2 tilt">
             <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
             <h3>Enterprise-grade security</h3>
             <p>SOC 2 Type II, GDPR, SSO/SAML, and granular role-based access. Your data stays yours, always.</p>
+            <div class="feature-media"><img data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_175548_ecb38b40-6ab7-4bc4-a7cd-8b508c7deca5_min.webp" alt="" width="1216" height="896" loading="lazy" decoding="async"></div>
           </article>
 
           <article class="card b-span-2 tilt">
             <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v4H4zM4 12h10v8H4zM18 12h2v8h-2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
             <h3>Composable dashboards</h3>
             <p>Drag, drop, and ship a stakeholder-ready report in minutes. Beautiful by default, customizable to the pixel.</p>
+            <div class="feature-media"><img data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_175559_0508939e-c94f-413f-b054-51ad4cab2e25_min.webp" alt="" width="1216" height="896" loading="lazy" decoding="async"></div>
           </article>
 
           <article class="card b-span-2 tilt">
             <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
             <h3>200+ native integrations</h3>
             <p>Connect your warehouse, product, payments, and CRM in a click. No pipelines to babysit.</p>
+            <div class="feature-media"><img data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_175611_64a13391-b30e-430e-a08e-c8958da2d3cf_min.webp" alt="" width="1216" height="896" loading="lazy" decoding="async"></div>
           </article>
 
           <article class="card b-span-4 tilt">
@@ -276,10 +282,10 @@
     <section aria-label="By the numbers">
       <div class="container">
         <div class="stats-grid" data-stagger>
-          <div class="stat"><div class="num" data-count="99.99" data-suffix="%">0</div><div class="label">Uptime SLA</div></div>
-          <div class="stat"><div class="num" data-count="12" data-suffix="B+">0</div><div class="label">Events / day processed</div></div>
-          <div class="stat"><div class="num" data-count="4200" data-suffix="+">0</div><div class="label">Teams onboarded</div></div>
-          <div class="stat"><div class="num" data-count="320" data-prefix="" data-suffix="ms">0</div><div class="label">Median query time</div></div>
+          <div class="stat tilt"><div class="num" data-count="99.99" data-suffix="%">0</div><div class="label">Uptime SLA</div></div>
+          <div class="stat tilt"><div class="num" data-count="12" data-suffix="B+">0</div><div class="label">Events / day processed</div></div>
+          <div class="stat tilt"><div class="num" data-count="4200" data-suffix="+">0</div><div class="label">Teams onboarded</div></div>
+          <div class="stat tilt"><div class="num" data-count="320" data-prefix="" data-suffix="ms">0</div><div class="label">Median query time</div></div>
         </div>
       </div>
     </section>

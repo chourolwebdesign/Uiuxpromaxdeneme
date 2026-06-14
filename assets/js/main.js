@@ -77,20 +77,28 @@
     kpis.forEach((el) => ob.observe(el));
   }
 
-  /* ---------------- Lazy fade-in for generated atmosphere layers ---------------- */
-  $$(".bg-image img[data-src]").forEach((img) => {
-    const load = () => {
-      img.addEventListener("load", () => img.classList.add("loaded"), { once: true });
-      img.addEventListener("error", () => img.closest(".bg-image")?.remove(), { once: true });
-      img.src = img.dataset.src;
-      img.removeAttribute("data-src");
-    };
-    // hero loads immediately; others when near viewport
-    if (img.closest(".hero-bg")) { load(); return; }
+  /* ---------------- Lazy fade-in for generated media (img + video) ---------------- */
+  const lazyLoadMedia = (el) => {
+    el.addEventListener("load", () => el.classList.add("loaded"), { once: true });
+    el.addEventListener("loadeddata", () => el.classList.add("loaded"), { once: true });
+    el.addEventListener("error", () => {
+      const host = el.closest(".bg-image, .feature-media, .hero-video");
+      if (host && host.classList.contains("bg-image")) host.remove();
+      else if (host && host.classList.contains("hero-video")) host.remove();
+      else el.style.display = "none";
+    }, { once: true });
+    el.src = el.dataset.src;
+    el.removeAttribute("data-src");
+    if (el.tagName === "VIDEO") { el.load(); el.play?.().catch(() => {}); }
+  };
+  $$(".bg-image img[data-src], .feature-media img[data-src], .hero-video video[data-src]").forEach((el) => {
+    if (el.tagName === "VIDEO" && reduceMotion) { el.closest(".hero-video")?.remove(); return; }
+    if (el.closest(".hero-bg") || el.closest(".hero-video")) { lazyLoadMedia(el); return; } // hero loads now
+    const host = el.closest(".bg-image, .feature-media");
     const io = new IntersectionObserver((es) => {
-      es.forEach((e) => { if (e.isIntersecting) { load(); io.disconnect(); } });
+      es.forEach((e) => { if (e.isIntersecting) { lazyLoadMedia(el); io.disconnect(); } });
     }, { rootMargin: "300px" });
-    io.observe(img.closest(".bg-image"));
+    io.observe(host);
   });
   // Graceful fallback: if a portrait fails, hide the broken img so the gradient shows
   $$(".avatar img").forEach((img) =>
@@ -351,6 +359,28 @@
     const makeItem = (name) => `<span class="logo-item">${icon}${name}</span>`;
     // duplicate the set so the -50% translate loops seamlessly
     track.innerHTML = (logos.map(makeItem).join("")).repeat(2);
+    const track2 = $("#logoTrack2");
+    if (track2) track2.innerHTML = ([...logos].reverse().map(makeItem).join("")).repeat(2);
+  }
+
+  /* ---------------- Floating ambient particles ---------------- */
+  const particles = $("#particles");
+  if (particles && !reduceMotion) {
+    const N = window.innerWidth < 760 ? 14 : 30;
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < N; i++) {
+      const p = document.createElement("i");
+      const size = 2 + Math.random() * 4;
+      p.style.left = Math.random() * 100 + "%";
+      p.style.bottom = "-10px";
+      p.style.width = p.style.height = size + "px";
+      p.style.setProperty("--drift", (Math.random() * 80 - 40) + "px");
+      p.style.animationDuration = (10 + Math.random() * 14) + "s";
+      p.style.animationDelay = "-" + (Math.random() * 16) + "s";
+      p.style.opacity = (0.3 + Math.random() * 0.5).toFixed(2);
+      frag.appendChild(p);
+    }
+    particles.appendChild(frag);
   }
 
   /* ---------------- FAQ: keep accordion single-open (optional polish) ---------------- */

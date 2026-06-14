@@ -752,3 +752,98 @@ section { position: relative; padding-block: clamp(4rem, 8vw, 8rem); }
 .mt-6 { margin-top: var(--space-6); }
 .center { text-align: center; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* =================================================================
+   21. MAX MOTION LAYER — flowing gradients, glow borders, particles,
+       button shine, 3D depth, animated icons & dividers
+   ================================================================= */
+@media (prefers-reduced-motion: no-preference) {
+
+  /* Flowing animated gradient text */
+  .gradient-text {
+    background-size: 220% auto;
+    animation: text-flow 8s linear infinite;
+  }
+  @keyframes text-flow { to { background-position: 220% center; } }
+
+  /* Eyebrow status dot — live pulse */
+  .eyebrow .dot { animation: dot-pulse 2.2s var(--ease-out) infinite; }
+  @keyframes dot-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(34,211,238,.7); }
+    70%  { box-shadow: 0 0 0 9px rgba(34,211,238,0); }
+    100% { box-shadow: 0 0 0 0 rgba(34,211,238,0); }
+  }
+
+  /* Button shine sweep on hover */
+  .btn { overflow: hidden; }
+  .btn > * { position: relative; z-index: 1; }
+  .btn::before {
+    content: ""; position: absolute; top: 0; left: -120%; width: 60%; height: 100%; z-index: 0;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent);
+    transform: skewX(-18deg); transition: none;
+  }
+  .btn:hover::before { animation: shine .9s var(--ease-out); }
+  @keyframes shine { to { left: 160%; } }
+
+  /* Animated conic glow border (featured plan + opt-in .glow-border) */
+  .plan.featured, .glow-border { position: relative; }
+  .plan.featured::after, .glow-border::after {
+    content: ""; position: absolute; inset: -1.5px; border-radius: inherit; z-index: -1;
+    background: conic-gradient(from var(--ang, 0deg), var(--brand-500), var(--cyan-400), var(--violet-500), var(--brand-500));
+    filter: blur(6px); opacity: .55;
+    animation: spin-border 6s linear infinite;
+  }
+  @property --ang { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+  @keyframes spin-border { to { --ang: 360deg; } }
+
+  /* Animated feature icons on card hover */
+  .card:hover .feature-icon { transform: translateY(-3px) rotate(-6deg) scale(1.06); }
+  .feature-icon { transition: transform .5s var(--ease-spring); }
+
+  /* Floating ambient particles in hero */
+  .particles { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .particles i {
+    position: absolute; width: 4px; height: 4px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(167,180,255,.9), transparent 70%);
+    animation: rise linear infinite;
+  }
+  @keyframes rise {
+    0%   { transform: translateY(20px) translateX(0) scale(.6); opacity: 0; }
+    10%  { opacity: .9; }
+    90%  { opacity: .7; }
+    100% { transform: translateY(-90vh) translateX(var(--drift, 20px)) scale(1.1); opacity: 0; }
+  }
+
+  /* Animated nav link underline */
+  .nav-links a::after {
+    content: ""; position: absolute; left: 14px; right: 14px; bottom: 4px; height: 2px;
+    background: var(--gradient-brand); border-radius: 2px;
+    transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease-out);
+  }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  /* Marquee second row reversed */
+  .marquee-track.reverse { animation-direction: reverse; animation-duration: 40s; opacity: .6; margin-top: var(--space-4); }
+}
+
+/* Feature media (generated visuals) */
+.feature-media {
+  margin-top: var(--space-5); border-radius: var(--r-md); overflow: hidden;
+  border: 1px solid var(--border); aspect-ratio: 16 / 9; position: relative; background: var(--bg-2);
+}
+.feature-media img {
+  width: 100%; height: 100%; object-fit: cover; opacity: 0;
+  transform: scale(1.06); transition: opacity 1s var(--ease-out), transform .8s var(--ease-out);
+}
+.feature-media img.loaded { opacity: .92; }
+.card:hover .feature-media img.loaded { transform: scale(1.12); opacity: 1; }
+
+/* Hero background video */
+.hero-video { mix-blend-mode: screen; }
+.hero-video video { width: 100%; height: 130%; object-fit: cover; opacity: 0; transition: opacity 1.4s var(--ease-out); }
+.hero-video video.loaded { opacity: .55; }
+[data-theme="light"] .hero-video video.loaded { opacity: .25; }
+
+/* Deeper 3D on cards */
+.stat, .plan, .step { transform-style: preserve-3d; }
+.feature-icon, .num-badge, .plan .tag { transform: translateZ(20px); }
