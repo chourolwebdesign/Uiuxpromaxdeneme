@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Design tokens — semantic color system (dark default + light)
+   Values are space-separated RGB channels for Tailwind <alpha-value>.
+   ============================================================ */
+@layer base {
+  :root,
+  .dark {
+    --bg: 7 7 10; /* #07070A near-black with a cool cast */
+    --surface: 255 255 255; /* glass overlays use low alpha of this */
+    --elevated: 18 18 24;
+    --border: 255 255 255;
+    --fg: 244 246 248; /* #F4F6F8 */
+    --muted: 154 161 172; /* #9AA1AC — secondary text, ~5:1 on bg */
+    --primary: 124 108 255; /* #7C6CFF electric indigo */
+    --primary-fg: 255 255 255;
+    --secondary: 178 108 234; /* #B26CEA violet */
+    --accent: 77 212 255; /* #4DD4FF cyan */
+    --success: 52 211 153;
+    --warning: 251 191 36;
+    --error: 251 113 133;
+
+    --glass-bg: 255 255 255 / 0.04;
+    --glass-border: 255 255 255 / 0.09;
+    --grid-line: 255 255 255 / 0.04;
+  }
+
+  .light {
+    --bg: 248 250 252; /* #F8FAFC */
+    --surface: 15 23 42;
+    --elevated: 255 255 255;
+    --border: 15 23 42;
+    --fg: 15 23 42; /* #0F172A */
+    --muted: 71 85 105; /* #475569 — AA on light bg */
+    --primary: 99 92 233;
+    --primary-fg: 255 255 255;
+    --secondary: 147 51 234;
+    --accent: 14 165 233;
+    --success: 16 185 129;
+    --warning: 217 119 6;
+    --error: 220 38 38;
+
+    --glass-bg: 15 23 42 / 0.03;
+    --glass-border: 15 23 42 / 0.08;
+    --grid-line: 15 23 42 / 0.05;
+  }
+
+  * {
+    border-color: rgb(var(--border) / 0.1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem; /* offset for the fixed navbar on anchor jumps */
+  }
+
+  body {
+    margin: 0;
+    background-color: rgb(var(--bg));
+    color: rgb(var(--fg));
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'ss01';
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  /* Tabular figures for stats/prices to prevent layout shift */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::selection {
+    background: rgb(var(--primary) / 0.32);
+    color: rgb(var(--fg));
+  }
+
+  /* Visible, on-brand focus ring for keyboard users only */
+  :focus-visible {
+    outline: 2px solid rgb(var(--primary));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .skip-link {
+    position: fixed;
+    top: -100px;
+    left: 1rem;
+    z-index: 1000;
+    padding: 0.75rem 1.25rem;
+    background: rgb(var(--primary));
+    color: #fff;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--fg) / 0.14);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--fg) / 0.24);
+    background-clip: content-box;
+  }
+}
+
+/* ============================================================
+   Component utilities
+   ============================================================ */
+@layer components {
+  .container-px {
+    @apply mx-auto w-full max-w-container px-5 sm:px-8 lg:px-10;
+  }
+
+  /* Liquid-glass surface */
+  .glass {
+    background: linear-gradient(180deg, rgb(var(--surface) / 0.06), rgb(var(--surface) / 0.02));
+    border: 1px solid rgb(var(--glass-border));
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+  }
+
+  .glass-strong {
+    background: linear-gradient(180deg, rgb(var(--surface) / 0.1), rgb(var(--surface) / 0.04));
+    border: 1px solid rgb(var(--glass-border));
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+  }
+
+  /* Gradient text — iridescent brand sweep */
+  .text-gradient {
+    background-image: linear-gradient(
+      100deg,
+      rgb(var(--fg)) 0%,
+      rgb(var(--primary)) 38%,
+      rgb(var(--secondary)) 62%,
+      rgb(var(--accent)) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Hairline gradient ring used on premium cards/buttons */
+  .ring-grad {
+    position: relative;
+  }
+  .ring-grad::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(140deg, rgb(var(--primary) / 0.6), transparent 40%, rgb(var(--accent) / 0.5));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Skeleton shimmer */
+  .skeleton {
+    position: relative;
+    overflow: hidden;
+    background: rgb(var(--fg) / 0.06);
+  }
+  .skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgb(var(--fg) / 0.08), transparent);
+    animation: shimmer 1.8s infinite;
+  }
+
+  /* Dotted grid backdrop */
+  .bg-grid {
+    background-image: radial-gradient(rgb(var(--grid-line)) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+}
+
+/* ============================================================
+   Accessibility — respect reduced motion globally
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
