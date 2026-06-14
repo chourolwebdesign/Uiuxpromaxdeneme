@@ -43,6 +43,24 @@ floating glass stat cards · logo marquee · bento feature grid · animated stat
 3-step "how it works" · masonry testimonials · pricing with monthly/yearly toggle ·
 accordion FAQ · gradient CTA · rich footer.
 
+## Generated media (Higgsfield MCP)
+
+The site embeds AI-generated assets produced with Higgsfield (Recraft 4.1):
+
+- **Hero + CTA atmospheres** — 2K abstract aurora backgrounds, lazy-loaded with fade-in
+- **6 testimonial portraits** — photorealistic headshots replacing initial avatars
+- **OG/Twitter card** image
+
+These are referenced from Higgsfield's CDN (the build sandbox can't fetch the host to
+vendor them locally). To self-host: allowlist `d8j0ntlcm91z4.cloudfront.net` in the
+environment's network egress, then download into `assets/img/` and swap the URLs.
+All image layers fail gracefully — a broken portrait reveals its gradient fallback.
+
+## 3D
+
+- **Interactive glass cube** — CSS 3D, auto-rotates and tracks the cursor (hero, desktop)
+- **Dashboard mockup** — rotates in real 3D space on mouse move, combined with scroll tilt
+
 ## Motion specifications
 
 - **Animated background** — slowly drifting multi-layer aurora + film-grain overlay

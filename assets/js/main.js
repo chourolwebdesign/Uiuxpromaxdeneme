@@ -77,6 +77,25 @@
     kpis.forEach((el) => ob.observe(el));
   }
 
+  /* ---------------- Lazy fade-in for generated atmosphere layers ---------------- */
+  $$(".bg-image img[data-src]").forEach((img) => {
+    const load = () => {
+      img.addEventListener("load", () => img.classList.add("loaded"), { once: true });
+      img.addEventListener("error", () => img.closest(".bg-image")?.remove(), { once: true });
+      img.src = img.dataset.src;
+      img.removeAttribute("data-src");
+    };
+    // hero loads immediately; others when near viewport
+    if (img.closest(".hero-bg")) { load(); return; }
+    const io = new IntersectionObserver((es) => {
+      es.forEach((e) => { if (e.isIntersecting) { load(); io.disconnect(); } });
+    }, { rootMargin: "300px" });
+    io.observe(img.closest(".bg-image"));
+  });
+  // Graceful fallback: if a portrait fails, hide the broken img so the gradient shows
+  $$(".avatar img").forEach((img) =>
+    img.addEventListener("error", () => { img.style.display = "none"; }, { once: true }));
+
   /* ---------------- Year ---------------- */
   const yr = $("#year"); if (yr) yr.textContent = new Date().getFullYear();
 
@@ -216,19 +235,62 @@
     }, { passive: true });
   }
 
-  /* ---------------- Hero mockup scroll tilt (flatten as it enters) ---------------- */
+  /* ---------------- Hero mockup: 3D scroll tilt + mouse rotation ---------------- */
   if (!reduceMotion) {
     const mock = $("#mockup");
     if (mock) {
-      const updateMock = () => {
+      let scrollTilt = 14;        // current scroll-driven X tilt
+      let tMX = 0, tMY = 0;       // target mouse rotation (deg)
+      let mX = 0, mY = 0;         // smoothed mouse rotation
+
+      const updateScroll = () => {
         const r = mock.getBoundingClientRect();
-        const progress = clamp(1 - (r.top + r.height * 0.2) / innerHeight, 0, 1);
-        const tilt = lerp(14, 0, progress); // degrees
-        mock.style.transform = `rotateX(${tilt}deg)`;
+        const p = clamp(1 - (r.top + r.height * 0.2) / innerHeight, 0, 1);
+        scrollTilt = lerp(14, 0, p);
       };
-      window.addEventListener("scroll", () => requestAnimationFrame(updateMock), { passive: true });
-      updateMock();
+      window.addEventListener("scroll", () => requestAnimationFrame(updateScroll), { passive: true });
+      updateScroll();
+
+      const stage = $(".hero-visual");
+      if (stage && finePointer) {
+        stage.addEventListener("mousemove", (e) => {
+          const r = stage.getBoundingClientRect();
+          tMY = ((e.clientX - (r.left + r.width / 2)) / r.width) * 12;   // rotateY
+          tMX = ((e.clientY - (r.top + r.height / 2)) / r.height) * -8;  // extra rotateX
+        });
+        stage.addEventListener("mouseleave", () => { tMX = 0; tMY = 0; });
+      }
+
+      const render3D = () => {
+        mX = lerp(mX, tMX, 0.08);
+        mY = lerp(mY, tMY, 0.08);
+        mock.style.transform = `rotateX(${scrollTilt + mX}deg) rotateY(${mY}deg)`;
+        requestAnimationFrame(render3D);
+      };
+      requestAnimationFrame(render3D);
     }
+  }
+
+  /* ---------------- Interactive 3D cube (auto-rotate + cursor) ---------------- */
+  const cube = $("#cube");
+  if (cube && !reduceMotion) {
+    let ry = 0;                 // continuous spin
+    let tmx = 0, tmy = 0;       // mouse-target offsets
+    let mx2 = 0, my2 = 0;       // smoothed
+    if (finePointer) {
+      window.addEventListener("mousemove", (e) => {
+        tmy = ((e.clientX / innerWidth) - 0.5) * 36;
+        tmx = ((e.clientY / innerHeight) - 0.5) * -28;
+      }, { passive: true });
+    }
+    const spin = () => {
+      ry += 0.28;
+      mx2 = lerp(mx2, tmx, 0.06);
+      my2 = lerp(my2, tmy, 0.06);
+      cube.style.transform = `rotateX(${-22 + mx2}deg) rotateY(${ry + my2}deg)`;
+      requestAnimationFrame(spin);
+    };
+    requestAnimationFrame(spin);
   }
 
   /* ---------------- Animated counters ---------------- */
