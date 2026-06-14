@@ -143,16 +143,32 @@ body {
   min-height: 100vh;
 }
 
-/* Ambient page backdrop */
+/* Ambient page backdrop — slowly drifting aurora */
 body::before {
   content: "";
-  position: fixed; inset: 0; z-index: -2;
+  position: fixed; inset: -20%; z-index: -2;
   background:
-    radial-gradient(60% 50% at 50% -8%, rgba(99,102,241,.22), transparent 60%),
-    radial-gradient(40% 40% at 88% 12%, rgba(34,211,238,.12), transparent 60%),
-    radial-gradient(45% 45% at 8% 30%, rgba(192,132,252,.12), transparent 60%);
+    radial-gradient(38% 42% at 50% 0%, rgba(99,102,241,.30), transparent 62%),
+    radial-gradient(34% 38% at 85% 14%, rgba(34,211,238,.16), transparent 60%),
+    radial-gradient(40% 42% at 10% 28%, rgba(192,132,252,.18), transparent 62%),
+    radial-gradient(30% 34% at 70% 40%, rgba(168,85,247,.12), transparent 60%);
   pointer-events: none;
+  animation: aurora-drift 26s ease-in-out infinite alternate;
+  will-change: transform;
 }
+@keyframes aurora-drift {
+  0%   { transform: translate3d(0,0,0) scale(1); }
+  50%  { transform: translate3d(2.5%, 1.8%, 0) scale(1.08); }
+  100% { transform: translate3d(-2%, -1.5%, 0) scale(1.04); }
+}
+
+/* Film grain texture overlay — premium tactile finish */
+.grain {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+[data-theme="light"] .grain { opacity: .025; }
 body::after {
   content: "";
   position: fixed; inset: 0; z-index: -2;
@@ -626,6 +642,26 @@ section { position: relative; padding-block: clamp(4rem, 8vw, 8rem); }
 [data-reveal][data-reveal="scale"].in { transform: none; }
 [data-stagger] > * { opacity: 0; transform: translateY(22px); transition: opacity .6s var(--ease-out), transform .6s var(--ease-out); }
 [data-stagger].in > * { opacity: 1; transform: none; }
+
+/* Cinematic headline — word-by-word entrance */
+.reveal-words .word { display: inline-block; overflow: hidden; vertical-align: top; }
+.reveal-words .word > span {
+  display: inline-block;
+  transform: translateY(110%) rotate(4deg);
+  opacity: 0;
+  transition: transform .9s var(--ease-out), opacity .9s var(--ease-out);
+}
+.reveal-words.in .word > span { transform: none; opacity: 1; }
+
+/* Skeleton → live values inside the dashboard mockup */
+.k-value[data-skeleton] { position: relative; color: transparent; }
+.k-value[data-skeleton]::after {
+  content: ""; position: absolute; inset: 6px 30% 6px 0; border-radius: 6px;
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 37%, var(--surface) 63%);
+  background-size: 400% 100%; animation: shimmer 1.3s ease infinite;
+}
+.k-value.live { color: var(--text); transition: color .4s var(--ease-out); }
+.k-value.live::after { content: none; }
 
 /* Scroll progress bar */
 .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; z-index: 200; width: 0%; background: var(--gradient-brand); box-shadow: 0 0 12px rgba(99,102,241,.7); }

@@ -35,6 +35,48 @@
     localStorage.setItem("lumen-theme", next);
   });
 
+  /* ---------------- Cinematic headline (split into words) ---------------- */
+  $$("[data-words]").forEach((el) => {
+    const words = el.textContent.trim().split(/\s+/);
+    // preserve the gradient span on "decisions," — rebuild from innerHTML tokens
+    const html = el.innerHTML;
+    el.innerHTML = "";
+    // Tokenize keeping inline <span> wrappers intact
+    const tmp = document.createElement("div");
+    tmp.innerHTML = html;
+    const frag = document.createDocumentFragment();
+    let idx = 0;
+    tmp.childNodes.forEach((node) => {
+      const text = node.textContent;
+      const isEl = node.nodeType === 1;
+      text.split(/(\s+)/).forEach((tok) => {
+        if (tok.trim() === "") { frag.appendChild(document.createTextNode(tok)); return; }
+        const w = document.createElement("span");
+        w.className = "word";
+        const inner = document.createElement("span");
+        inner.textContent = tok;
+        if (isEl) inner.className = node.className; // keep gradient-text
+        inner.style.transitionDelay = (idx * 55) + "ms";
+        w.appendChild(inner);
+        frag.appendChild(w);
+        idx++;
+      });
+    });
+    el.appendChild(frag);
+    // trigger after preloader lifts
+    setTimeout(() => el.classList.add("in"), reduceMotion ? 0 : 500);
+  });
+
+  /* ---------------- Dashboard skeleton → live values ---------------- */
+  const kpis = $$(".k-value[data-skeleton]");
+  if (kpis.length) {
+    const reveal = () => kpis.forEach((el, i) => setTimeout(() => el.classList.add("live"), reduceMotion ? 0 : 700 + i * 180));
+    const ob = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { reveal(); ob.disconnect(); } });
+    }, { threshold: 0.3 });
+    kpis.forEach((el) => ob.observe(el));
+  }
+
   /* ---------------- Year ---------------- */
   const yr = $("#year"); if (yr) yr.textContent = new Date().getFullYear();
 

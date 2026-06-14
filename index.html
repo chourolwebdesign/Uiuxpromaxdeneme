@@ -33,6 +33,9 @@
     </div>
   </div>
 
+  <!-- Film grain texture -->
+  <div class="grain" aria-hidden="true"></div>
+
   <!-- Scroll progress + cursor -->
   <div class="scroll-progress" id="scrollProgress"></div>
   <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
@@ -88,7 +91,7 @@
       <div class="container hero-inner">
         <span class="eyebrow" data-reveal><span class="dot"></span> Now with AI-native insights</span>
 
-        <h1 class="display text-balance" data-reveal>
+        <h1 class="display text-balance reveal-words" id="heroTitle" data-words>
           Turn raw data into <span class="gradient-text">decisions</span>, in seconds.
         </h1>
 
@@ -132,17 +135,17 @@
               <div class="mock-row">
                 <div class="mock-kpi">
                   <div class="k-label">Active users</div>
-                  <div class="k-value">48,291</div>
+                  <div class="k-value" data-skeleton>48,291</div>
                   <div class="k-trend">▲ 12.4%</div>
                 </div>
                 <div class="mock-kpi">
                   <div class="k-label">Conversion</div>
-                  <div class="k-value">7.83%</div>
+                  <div class="k-value" data-skeleton>7.83%</div>
                   <div class="k-trend">▲ 3.1%</div>
                 </div>
                 <div class="mock-kpi">
                   <div class="k-label">Net revenue</div>
-                  <div class="k-value">$284k</div>
+                  <div class="k-value" data-skeleton>$284k</div>
                   <div class="k-trend">▲ 18.9%</div>
                 </div>
               </div>
