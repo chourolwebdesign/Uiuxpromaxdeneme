@@ -12,6 +12,8 @@
   <meta property="og:title" content="Lumen — Real-time intelligence for product teams" />
   <meta property="og:description" content="Turn raw data into decisions in seconds. Real-time analytics, AI insights, and beautiful dashboards." />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_174839_55a4080e-1e46-47c8-9820-4cad20527758.png" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Inline SVG favicon -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23818cf8'/%3E%3Cstop offset='.5' stop-color='%23c084fc'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Cpath d='M9 21V11m0 10h7m-1-6 3-3 3 3-3 3' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" />
@@ -84,9 +86,25 @@
   <main id="top">
     <!-- ============================ HERO ============================ -->
     <section class="hero" id="hero">
+      <div class="bg-image hero-bg hero-video" data-parallax="0.05" aria-hidden="true">
+        <video data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_175543_dcd8bf86-c8a1-4f95-9e07-525be2187bd1.mp4" poster="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_110657_6a4b1c14-4238-4bb0-a4dc-999192fac0de_min.webp" muted loop autoplay playsinline preload="none" width="1344" height="768"></video>
+      </div>
       <div class="orb orb-1" data-parallax="0.18"></div>
       <div class="orb orb-2" data-parallax="0.10"></div>
       <div class="orb orb-3" data-parallax="0.26"></div>
+      <div class="particles" id="particles" aria-hidden="true"></div>
+
+      <!-- Interactive 3D glass cube -->
+      <div class="scene-3d" data-parallax="0.12" aria-hidden="true">
+        <div class="cube" id="cube">
+          <div class="face f-front"></div>
+          <div class="face f-back"></div>
+          <div class="face f-right"></div>
+          <div class="face f-left"></div>
+          <div class="face f-top"></div>
+          <div class="face f-bottom"></div>
+        </div>
+      </div>
 
       <div class="container hero-inner">
         <span class="eyebrow" data-reveal><span class="dot"></span> Now with AI-native insights</span>
@@ -191,6 +209,7 @@
           <div class="marquee-track" id="logoTrack">
             <!-- duplicated in JS for seamless loop -->
           </div>
+          <div class="marquee-track reverse" id="logoTrack2" aria-hidden="true"></div>
         </div>
       </div>
     </section>
@@ -220,24 +239,28 @@
             <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2a7 7 0 0 0-4 12.7V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.3A7 7 0 0 0 12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 22h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
             <h3>AI insights, on autopilot</h3>
             <p>Lumen watches your metrics 24/7 and tells you why they moved — in plain English, before you even ask.</p>
+            <div class="feature-media"><img data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_175546_277a534b-244d-4401-8b6b-1eaa2514574a_min.webp" alt="" width="1216" height="896" loading="lazy" decoding="async"></div>
           </article>
 
           <article class="card b-span-2 tilt">
             <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
             <h3>Enterprise-grade security</h3>
             <p>SOC 2 Type II, GDPR, SSO/SAML, and granular role-based access. Your data stays yours, always.</p>
+            <div class="feature-media"><img data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_175548_ecb38b40-6ab7-4bc4-a7cd-8b508c7deca5_min.webp" alt="" width="1216" height="896" loading="lazy" decoding="async"></div>
           </article>
 
           <article class="card b-span-2 tilt">
             <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v4H4zM4 12h10v8H4zM18 12h2v8h-2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
             <h3>Composable dashboards</h3>
             <p>Drag, drop, and ship a stakeholder-ready report in minutes. Beautiful by default, customizable to the pixel.</p>
+            <div class="feature-media"><img data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_175559_0508939e-c94f-413f-b054-51ad4cab2e25_min.webp" alt="" width="1216" height="896" loading="lazy" decoding="async"></div>
           </article>
 
           <article class="card b-span-2 tilt">
             <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
             <h3>200+ native integrations</h3>
             <p>Connect your warehouse, product, payments, and CRM in a click. No pipelines to babysit.</p>
+            <div class="feature-media"><img data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_175611_64a13391-b30e-430e-a08e-c8958da2d3cf_min.webp" alt="" width="1216" height="896" loading="lazy" decoding="async"></div>
           </article>
 
           <article class="card b-span-4 tilt">
@@ -259,10 +282,10 @@
     <section aria-label="By the numbers">
       <div class="container">
         <div class="stats-grid" data-stagger>
-          <div class="stat"><div class="num" data-count="99.99" data-suffix="%">0</div><div class="label">Uptime SLA</div></div>
-          <div class="stat"><div class="num" data-count="12" data-suffix="B+">0</div><div class="label">Events / day processed</div></div>
-          <div class="stat"><div class="num" data-count="4200" data-suffix="+">0</div><div class="label">Teams onboarded</div></div>
-          <div class="stat"><div class="num" data-count="320" data-prefix="" data-suffix="ms">0</div><div class="label">Median query time</div></div>
+          <div class="stat tilt"><div class="num" data-count="99.99" data-suffix="%">0</div><div class="label">Uptime SLA</div></div>
+          <div class="stat tilt"><div class="num" data-count="12" data-suffix="B+">0</div><div class="label">Events / day processed</div></div>
+          <div class="stat tilt"><div class="num" data-count="4200" data-suffix="+">0</div><div class="label">Teams onboarded</div></div>
+          <div class="stat tilt"><div class="num" data-count="320" data-prefix="" data-suffix="ms">0</div><div class="label">Median query time</div></div>
         </div>
       </div>
     </section>
@@ -309,32 +332,32 @@
           <figure class="testi">
             <div class="stars">★★★★★</div>
             <p>"We replaced three tools with Lumen and cut our reporting time by 80%. It's the first analytics product my whole team actually enjoys using."</p>
-            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#6366f1,#a855f7)">SK</span><span><span class="name">Sara Klein</span><br><span class="role">VP Product, Northwind</span></span></figcaption>
+            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#6366f1,#a855f7)"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_174751_1e44c51e-a9d7-48a3-88ab-2d0d0ebbcf6e_min.webp" alt="Sara Klein" width="44" height="44" loading="lazy" decoding="async"></span><span><span class="name">Sara Klein</span><br><span class="role">VP Product, Northwind</span></span></figcaption>
           </figure>
           <figure class="testi">
             <div class="stars">★★★★★</div>
             <p>"The AI insights caught a churn spike a full week before we would have. That single alert paid for the entire year."</p>
-            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#22d3ee,#3b82f6)">MR</span><span><span class="name">Marcus Reed</span><br><span class="role">Founder, Tideline</span></span></figcaption>
+            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#22d3ee,#3b82f6)"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_174754_b8b35106-4af8-46f8-8865-6c39086e7fd7_min.webp" alt="Marcus Reed" width="44" height="44" loading="lazy" decoding="async"></span><span><span class="name">Marcus Reed</span><br><span class="role">Founder, Tideline</span></span></figcaption>
           </figure>
           <figure class="testi">
             <div class="stars">★★★★★</div>
             <p>"Sub-second queries on billions of rows. I keep expecting it to slow down and it just… doesn't. Genuinely best-in-class."</p>
-            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#34d399,#059669)">AP</span><span><span class="name">Aisha Patel</span><br><span class="role">Lead Data Analyst, Vela</span></span></figcaption>
+            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#34d399,#059669)"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_175129_5e8edd5a-b0be-48a0-aaab-c2b81db146eb_min.webp" alt="Aisha Patel" width="44" height="44" loading="lazy" decoding="async"></span><span><span class="name">Aisha Patel</span><br><span class="role">Lead Data Analyst, Vela</span></span></figcaption>
           </figure>
           <figure class="testi">
             <div class="stars">★★★★★</div>
             <p>"Setup took eight minutes. Eight. Our previous platform took a full quarter and a consultant to roll out."</p>
-            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#fb7185,#e11d48)">JT</span><span><span class="name">Jordan Tan</span><br><span class="role">Head of Growth, Loopwork</span></span></figcaption>
+            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#fb7185,#e11d48)"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_174836_1f7cebfd-e53c-4181-b84a-35be8f11ac87_min.webp" alt="Jordan Tan" width="44" height="44" loading="lazy" decoding="async"></span><span><span class="name">Jordan Tan</span><br><span class="role">Head of Growth, Loopwork</span></span></figcaption>
           </figure>
           <figure class="testi">
             <div class="stars">★★★★★</div>
             <p>"Beautiful, fast, and the dashboards make our board meetings actually impressive. Every CEO should use this."</p>
-            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#fbbf24,#f59e0b)">EC</span><span><span class="name">Elena Costa</span><br><span class="role">CEO, Bright Atlas</span></span></figcaption>
+            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#fbbf24,#f59e0b)"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_174752_9dfa0018-5520-492c-aa60-ce52fd49490a_min.webp" alt="Elena Costa" width="44" height="44" loading="lazy" decoding="async"></span><span><span class="name">Elena Costa</span><br><span class="role">CEO, Bright Atlas</span></span></figcaption>
           </figure>
           <figure class="testi">
             <div class="stars">★★★★★</div>
             <p>"Security review passed on the first try. SOC 2, SSO, granular roles — exactly what our enterprise customers demand."</p>
-            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#a855f7,#7c3aed)">DV</span><span><span class="name">David Vance</span><br><span class="role">CTO, Meridian</span></span></figcaption>
+            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#a855f7,#7c3aed)"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_174754_99c59c4b-0553-4552-8a15-b629a2dee230_min.webp" alt="David Vance" width="44" height="44" loading="lazy" decoding="async"></span><span><span class="name">David Vance</span><br><span class="role">CTO, Meridian</span></span></figcaption>
           </figure>
         </div>
       </div>
@@ -436,6 +459,9 @@
     <section id="cta">
       <div class="container">
         <div class="cta-wrap" data-reveal="scale">
+          <div class="bg-image cta-bg" aria-hidden="true">
+            <img data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3F79O3aHGsGtu2NV8MlSm7f9XXQ/hf_20260614_174839_55a4080e-1e46-47c8-9820-4cad20527758_min.webp" alt="" width="2688" height="1536" loading="lazy" decoding="async" />
+          </div>
           <h2 class="display text-balance">Ready to see your data <span class="gradient-text">clearly</span>?</h2>
           <p class="lead text-balance">Join 4,200+ teams making faster, smarter decisions with Lumen. Start free today — your future self will thank you.</p>
           <div class="hero-cta">

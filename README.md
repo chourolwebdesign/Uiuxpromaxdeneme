@@ -43,9 +43,34 @@ floating glass stat cards · logo marquee · bento feature grid · animated stat
 3-step "how it works" · masonry testimonials · pricing with monthly/yearly toggle ·
 accordion FAQ · gradient CTA · rich footer.
 
+## Generated media (Higgsfield MCP)
+
+The site embeds AI-generated assets produced with Higgsfield:
+
+- **Hero ambient video** — image-to-video aurora loop (Veo 3.1 Lite), autoplaying muted, with the still atmosphere as poster + graceful fallback
+- **Hero + CTA atmospheres** — 2K abstract aurora backgrounds (Recraft 4.1)
+- **4 feature-card visuals** — abstract AI / security / dashboard / integration art
+- **6 testimonial portraits** — photorealistic headshots replacing initial avatars
+- **OG/Twitter card** image
+
+All media is lazy-loaded with fade-in and fails gracefully (broken layers self-remove
+or fall back to a gradient). Video is skipped entirely under `prefers-reduced-motion`.
+
+These are referenced from Higgsfield's CDN (the build sandbox can't fetch the host to
+vendor them locally). To self-host: allowlist `d8j0ntlcm91z4.cloudfront.net` in the
+environment's network egress, then download into `assets/img/` and swap the URLs.
+All image layers fail gracefully — a broken portrait reveals its gradient fallback.
+
+## 3D
+
+- **Interactive glass cube** — CSS 3D, auto-rotates and tracks the cursor (hero, desktop)
+- **Dashboard mockup** — rotates in real 3D space on mouse move, combined with scroll tilt
+
 ## Motion specifications
 
-- **Animated background** — slowly drifting multi-layer aurora + film-grain overlay
+- **Animated background** — drifting aurora + film grain + floating ambient particles + hero video
+- **Flowing gradient text**, **button shine sweeps**, **animated nav underlines**, **pulsing status dot**
+- **Conic glow borders** (featured plan), **animated feature icons**, **dual-direction logo marquee**
 - **Cinematic headline** — hero title splits into words that rise + rotate into place
 - **Skeleton → live** — dashboard KPIs shimmer as skeletons, then resolve on view
 - **Page enter** — preloader curtain + staggered hero reveal
