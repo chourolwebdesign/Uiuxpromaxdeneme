@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Lumen — Real-time intelligence for product teams</title>
+  <meta name="description" content="Lumen is the intelligent workspace where product teams turn raw data into decisions in seconds. Real-time analytics, AI insights, and beautiful dashboards — all in one place." />
+  <meta name="theme-color" content="#06070d" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Lumen — Real-time intelligence for product teams" />
+  <meta property="og:description" content="Turn raw data into decisions in seconds. Real-time analytics, AI insights, and beautiful dashboards." />
+  <meta property="og:type" content="website" />
+
+  <!-- Inline SVG favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23818cf8'/%3E%3Cstop offset='.5' stop-color='%23c084fc'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Cpath d='M9 21V11m0 10h7m-1-6 3-3 3 3-3 3' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" />
+
+  <!-- Fonts: Inter (with preconnect + display swap for perf) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" /></noscript>
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="pl-logo">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 18V6m0 12h7m-1-7 3-3 3 3-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+
+  <!-- Scroll progress + cursor -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- ============================ NAV ============================ -->
+  <header class="nav" id="nav">
+    <div class="container">
+      <a href="#" class="brand" aria-label="Lumen home">
+        <span class="logo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 18V6m0 12h7m-1-7 3-3 3 3-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Lumen
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Customers</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" id="themeToggle" aria-label="Toggle color theme">
+          <svg class="moon" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <a href="#" class="btn btn-ghost btn-desktop magnetic">Sign in</a>
+        <a href="#cta" class="btn btn-primary magnetic">Start free <svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <button class="icon-btn nav-burger" id="burger" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#testimonials">Customers</a>
+    <a href="#faq">FAQ</a>
+    <a href="#cta" class="btn btn-primary btn-lg btn-block">Start free trial</a>
+  </div>
+
+  <main id="top">
+    <!-- ============================ HERO ============================ -->
+    <section class="hero" id="hero">
+      <div class="orb orb-1" data-parallax="0.18"></div>
+      <div class="orb orb-2" data-parallax="0.10"></div>
+      <div class="orb orb-3" data-parallax="0.26"></div>
+
+      <div class="container hero-inner">
+        <span class="eyebrow" data-reveal><span class="dot"></span> Now with AI-native insights</span>
+
+        <h1 class="display text-balance" data-reveal>
+          Turn raw data into <span class="gradient-text">decisions</span>, in seconds.
+        </h1>
+
+        <p class="lead text-balance" data-reveal>
+          Lumen is the intelligent workspace where modern product teams measure what matters,
+          surface insights automatically, and ship with confidence — all in one beautifully fast place.
+        </p>
+
+        <div class="hero-cta" data-reveal>
+          <a href="#cta" class="btn btn-primary btn-lg magnetic">Start free — no card needed
+            <svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#how" class="btn btn-ghost btn-lg magnetic">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5Z" fill="currentColor"/></svg>
+            Watch the demo</a>
+        </div>
+
+        <p class="hero-note" data-reveal>
+          <span><span class="check">✓</span> 14-day free trial</span>
+          <span><span class="check">✓</span> Setup in under 5 minutes</span>
+          <span><span class="check">✓</span> SOC 2 Type II</span>
+        </p>
+      </div>
+
+      <!-- Dashboard mockup -->
+      <div class="container container-wide hero-visual">
+        <div class="mockup" id="mockup" data-reveal="scale">
+          <div class="mockup-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="url">app.lumen.io/overview</span>
+          </div>
+          <div class="mockup-body">
+            <aside class="mock-side">
+              <div class="si active"><i></i> Overview</div>
+              <div class="si"><i></i> Funnels</div>
+              <div class="si"><i></i> Cohorts</div>
+              <div class="si"><i></i> Retention</div>
+              <div class="si"><i></i> AI Insights</div>
+              <div class="si"><i></i> Reports</div>
+            </aside>
+            <div class="mock-main">
+              <div class="mock-row">
+                <div class="mock-kpi">
+                  <div class="k-label">Active users</div>
+                  <div class="k-value">48,291</div>
+                  <div class="k-trend">▲ 12.4%</div>
+                </div>
+                <div class="mock-kpi">
+                  <div class="k-label">Conversion</div>
+                  <div class="k-value">7.83%</div>
+                  <div class="k-trend">▲ 3.1%</div>
+                </div>
+                <div class="mock-kpi">
+                  <div class="k-label">Net revenue</div>
+                  <div class="k-value">$284k</div>
+                  <div class="k-trend">▲ 18.9%</div>
+                </div>
+              </div>
+              <div class="mock-chart">
+                <div class="ttl">Weekly active users</div>
+                <svg class="spark" viewBox="0 0 600 160" preserveAspectRatio="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="g-area" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#818cf8" stop-opacity=".5"/>
+                      <stop offset="1" stop-color="#818cf8" stop-opacity="0"/>
+                    </linearGradient>
+                    <linearGradient id="g-line" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0" stop-color="#818cf8"/>
+                      <stop offset=".5" stop-color="#c084fc"/>
+                      <stop offset="1" stop-color="#22d3ee"/>
+                    </linearGradient>
+                  </defs>
+                  <path class="area" d="M0,130 C60,110 90,70 150,80 C210,90 240,40 300,52 C360,64 390,20 450,30 C510,40 560,18 600,24 L600,160 L0,160 Z"/>
+                  <path class="line" d="M0,130 C60,110 90,70 150,80 C210,90 240,40 300,52 C360,64 390,20 450,30 C510,40 560,18 600,24"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating glass cards -->
+          <div class="float-card fc-1 floaty" data-parallax="0.06">
+            <span class="fc-icon"><svg viewBox="0 0 24 24" fill="none"><path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span><span class="fc-small">Anomaly resolved</span><br><span class="fc-strong">99.98% uptime</span></span>
+          </div>
+          <div class="float-card fc-2 floaty delay" data-parallax="0.09">
+            <span class="fc-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 2 7l10 5 10-5-10-5Zm0 8v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span><span class="fc-small">AI insight</span><br><span class="fc-strong">Churn risk −24%</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ LOGOS ============================ -->
+    <section class="logos" aria-label="Trusted by">
+      <div class="container">
+        <p data-reveal>Trusted by fast-moving teams at world-class companies</p>
+        <div class="marquee">
+          <div class="marquee-track" id="logoTrack">
+            <!-- duplicated in JS for seamless loop -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ FEATURES (BENTO) ============================ -->
+    <section id="features">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal><span class="dot"></span> Platform</span>
+          <h2 class="h2 text-balance" data-reveal>Everything you need to <span class="gradient-text">understand</span> your product</h2>
+          <p class="lead text-balance" data-reveal>A complete intelligence layer that connects your data, surfaces what matters, and makes every team faster — without the spreadsheet chaos.</p>
+        </div>
+
+        <div class="bento" data-stagger>
+          <article class="card b-span-4 tilt">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18M7 14l3-4 3 3 4-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3>Real-time analytics that never lag</h3>
+            <p>Stream millions of events and watch dashboards update live. Sub-second queries on billions of rows, so you never wait on an answer again.</p>
+            <div class="feature-visual">
+              <div class="viz-grid"></div>
+              <svg class="viz-line" viewBox="0 0 400 120" preserveAspectRatio="none"><path d="M0,90 C50,80 70,40 120,55 C170,70 190,20 250,35 C310,50 340,15 400,28" fill="none" stroke="url(#g-line)" stroke-width="3" stroke-linecap="round"/></svg>
+              <span class="pulse-dot" style="right:18px; top:24px;"></span>
+            </div>
+          </article>
+
+          <article class="card b-span-2 tilt">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2a7 7 0 0 0-4 12.7V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.3A7 7 0 0 0 12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 22h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <h3>AI insights, on autopilot</h3>
+            <p>Lumen watches your metrics 24/7 and tells you why they moved — in plain English, before you even ask.</p>
+          </article>
+
+          <article class="card b-span-2 tilt">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
+            <h3>Enterprise-grade security</h3>
+            <p>SOC 2 Type II, GDPR, SSO/SAML, and granular role-based access. Your data stays yours, always.</p>
+          </article>
+
+          <article class="card b-span-2 tilt">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v4H4zM4 12h10v8H4zM18 12h2v8h-2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
+            <h3>Composable dashboards</h3>
+            <p>Drag, drop, and ship a stakeholder-ready report in minutes. Beautiful by default, customizable to the pixel.</p>
+          </article>
+
+          <article class="card b-span-2 tilt">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
+            <h3>200+ native integrations</h3>
+            <p>Connect your warehouse, product, payments, and CRM in a click. No pipelines to babysit.</p>
+          </article>
+
+          <article class="card b-span-4 tilt">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="7" r="3" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="9" r="2.5" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5M15 20c0-2 1.5-3.5 4-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <h3>Built for the whole team</h3>
+            <p>From founders to analysts to marketers — Lumen gives everyone a single source of truth with comments, alerts, and shareable views, so decisions happen in the open and nothing gets lost.</p>
+            <div class="feature-visual">
+              <div class="viz-grid"></div>
+              <div class="bars" style="position:absolute; inset:auto 16px 16px; height:60%;" id="featBars">
+                <span style="height:40%"></span><span style="height:65%"></span><span style="height:50%"></span><span style="height:80%"></span><span style="height:60%"></span><span style="height:95%"></span><span style="height:72%"></span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ STATS ============================ -->
+    <section aria-label="By the numbers">
+      <div class="container">
+        <div class="stats-grid" data-stagger>
+          <div class="stat"><div class="num" data-count="99.99" data-suffix="%">0</div><div class="label">Uptime SLA</div></div>
+          <div class="stat"><div class="num" data-count="12" data-suffix="B+">0</div><div class="label">Events / day processed</div></div>
+          <div class="stat"><div class="num" data-count="4200" data-suffix="+">0</div><div class="label">Teams onboarded</div></div>
+          <div class="stat"><div class="num" data-count="320" data-prefix="" data-suffix="ms">0</div><div class="label">Median query time</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ HOW IT WORKS ============================ -->
+    <section id="how">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal><span class="dot"></span> How it works</span>
+          <h2 class="h2 text-balance" data-reveal>From zero to insight in <span class="gradient-text">three steps</span></h2>
+          <p class="lead text-balance" data-reveal>No data team required. Lumen handles the heavy lifting so you can focus on the decisions.</p>
+        </div>
+
+        <div class="steps" data-stagger>
+          <div class="step tilt">
+            <div class="num-badge">1</div>
+            <h3>Connect your sources</h3>
+            <p>Plug in your warehouse, product SDK, or any of 200+ integrations. Lumen auto-maps your schema in seconds.</p>
+          </div>
+          <div class="step tilt">
+            <div class="num-badge">2</div>
+            <h3>Explore visually</h3>
+            <p>Ask questions in plain language or build funnels, cohorts, and dashboards with intuitive drag-and-drop.</p>
+          </div>
+          <div class="step tilt">
+            <div class="num-badge">3</div>
+            <h3>Act with confidence</h3>
+            <p>Get proactive alerts, AI explanations, and shareable reports that move your whole team forward.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ TESTIMONIALS ============================ -->
+    <section id="testimonials">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal><span class="dot"></span> Loved by teams</span>
+          <h2 class="h2 text-balance" data-reveal>The fastest teams run on <span class="gradient-text">Lumen</span></h2>
+          <p class="lead text-balance" data-reveal>Don't take our word for it — here's what operators, founders, and analysts say.</p>
+        </div>
+
+        <div class="testi-grid" data-stagger>
+          <figure class="testi">
+            <div class="stars">★★★★★</div>
+            <p>"We replaced three tools with Lumen and cut our reporting time by 80%. It's the first analytics product my whole team actually enjoys using."</p>
+            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#6366f1,#a855f7)">SK</span><span><span class="name">Sara Klein</span><br><span class="role">VP Product, Northwind</span></span></figcaption>
+          </figure>
+          <figure class="testi">
+            <div class="stars">★★★★★</div>
+            <p>"The AI insights caught a churn spike a full week before we would have. That single alert paid for the entire year."</p>
+            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#22d3ee,#3b82f6)">MR</span><span><span class="name">Marcus Reed</span><br><span class="role">Founder, Tideline</span></span></figcaption>
+          </figure>
+          <figure class="testi">
+            <div class="stars">★★★★★</div>
+            <p>"Sub-second queries on billions of rows. I keep expecting it to slow down and it just… doesn't. Genuinely best-in-class."</p>
+            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#34d399,#059669)">AP</span><span><span class="name">Aisha Patel</span><br><span class="role">Lead Data Analyst, Vela</span></span></figcaption>
+          </figure>
+          <figure class="testi">
+            <div class="stars">★★★★★</div>
+            <p>"Setup took eight minutes. Eight. Our previous platform took a full quarter and a consultant to roll out."</p>
+            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#fb7185,#e11d48)">JT</span><span><span class="name">Jordan Tan</span><br><span class="role">Head of Growth, Loopwork</span></span></figcaption>
+          </figure>
+          <figure class="testi">
+            <div class="stars">★★★★★</div>
+            <p>"Beautiful, fast, and the dashboards make our board meetings actually impressive. Every CEO should use this."</p>
+            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#fbbf24,#f59e0b)">EC</span><span><span class="name">Elena Costa</span><br><span class="role">CEO, Bright Atlas</span></span></figcaption>
+          </figure>
+          <figure class="testi">
+            <div class="stars">★★★★★</div>
+            <p>"Security review passed on the first try. SOC 2, SSO, granular roles — exactly what our enterprise customers demand."</p>
+            <figcaption class="who"><span class="avatar" style="background:linear-gradient(135deg,#a855f7,#7c3aed)">DV</span><span><span class="name">David Vance</span><br><span class="role">CTO, Meridian</span></span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ PRICING ============================ -->
+    <section id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal><span class="dot"></span> Pricing</span>
+          <h2 class="h2 text-balance" data-reveal>Simple, transparent <span class="gradient-text">pricing</span></h2>
+          <p class="lead text-balance" data-reveal>Start free. Upgrade when you're ready. No hidden fees, ever.</p>
+          <div class="price-toggle" data-reveal role="group" aria-label="Billing period">
+            <button id="billMonthly" class="active" aria-pressed="true">Monthly</button>
+            <button id="billYearly" aria-pressed="false">Yearly <span class="save">Save 20%</span></button>
+          </div>
+        </div>
+
+        <div class="pricing-grid" data-stagger>
+          <article class="plan tilt">
+            <div class="p-name">Starter</div>
+            <p class="p-desc">For individuals and small projects getting started.</p>
+            <div class="price"><span class="amt" data-price-m="0" data-price-y="0">$0</span><span class="per">/forever</span></div>
+            <ul class="feats">
+              <li><svg viewBox="0 0 24 24" fill="none"><path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Up to 10k events/mo</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 3 dashboards</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Community support</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 7-day data retention</li>
+            </ul>
+            <a href="#cta" class="btn btn-ghost btn-block magnetic">Get started free</a>
+          </article>
+
+          <article class="plan featured tilt">
+            <span class="tag">Most popular</span>
+            <div class="p-name">Pro</div>
+            <p class="p-desc">For growing teams that need power and speed.</p>
+            <div class="price"><span class="amt" data-price-m="49" data-price-y="39">$49</span><span class="per">/mo per seat</span></div>
+            <ul class="feats">
+              <li><svg viewBox="0 0 24 24" fill="none"><path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Unlimited events</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Unlimited dashboards</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> AI insights & alerts</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 200+ integrations</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Priority support</li>
+            </ul>
+            <a href="#cta" class="btn btn-primary btn-block magnetic">Start 14-day trial</a>
+          </article>
+
+          <article class="plan tilt">
+            <div class="p-name">Enterprise</div>
+            <p class="p-desc">For organizations with advanced needs and scale.</p>
+            <div class="price"><span class="amt">Custom</span></div>
+            <ul class="feats">
+              <li><svg viewBox="0 0 24 24" fill="none"><path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Everything in Pro</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> SSO/SAML & SCIM</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Dedicated success manager</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 99.99% uptime SLA</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><path d="m20 6-11 11-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Custom data residency</li>
+            </ul>
+            <a href="#cta" class="btn btn-ghost btn-block magnetic">Contact sales</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ FAQ ============================ -->
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal><span class="dot"></span> FAQ</span>
+          <h2 class="h2 text-balance" data-reveal>Questions, <span class="gradient-text">answered</span></h2>
+        </div>
+
+        <div class="faq" data-stagger>
+          <details class="faq-item">
+            <summary class="faq-q">How long does it take to get set up?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+            <div class="faq-a">Most teams are live in under five minutes. Connect a source, and Lumen auto-detects your schema and generates starter dashboards instantly — no data engineer required.</div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-q">Is my data secure?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+            <div class="faq-a">Absolutely. Lumen is SOC 2 Type II certified and GDPR-compliant, with encryption in transit and at rest, SSO/SAML, granular role-based access, and optional custom data residency on Enterprise.</div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-q">Can I try it before paying?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+            <div class="faq-a">Yes — there's a free-forever Starter plan, plus a 14-day Pro trial with no credit card required. Cancel anytime, no questions asked.</div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-q">Which tools does Lumen integrate with?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+            <div class="faq-a">Over 200 integrations including Snowflake, BigQuery, Postgres, Segment, Stripe, Salesforce, HubSpot, and more. Plus a clean REST API and SDKs for custom events.</div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-q">Do you offer discounts for startups or nonprofits?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+            <div class="faq-a">We do. Eligible early-stage startups and registered nonprofits get up to 50% off Pro. Reach out to our team and we'll get you set up.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ CTA ============================ -->
+    <section id="cta">
+      <div class="container">
+        <div class="cta-wrap" data-reveal="scale">
+          <h2 class="display text-balance">Ready to see your data <span class="gradient-text">clearly</span>?</h2>
+          <p class="lead text-balance">Join 4,200+ teams making faster, smarter decisions with Lumen. Start free today — your future self will thank you.</p>
+          <div class="hero-cta">
+            <a href="#" class="btn btn-primary btn-lg magnetic">Start free trial
+              <svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a href="#" class="btn btn-ghost btn-lg magnetic">Talk to sales</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="brand-col">
+          <a href="#" class="brand">
+            <span class="logo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 18V6m0 12h7m-1-7 3-3 3 3-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Lumen
+          </a>
+          <p class="f-about">Real-time intelligence for product teams. Turn raw data into decisions, in seconds.</p>
+          <div class="socials" style="margin-top:1rem">
+            <a class="icon-btn magnetic" href="#" aria-label="Twitter / X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2H21l-6.56 7.49L22 22h-6.4l-5-6.56L4.8 22H2l7.02-8.02L2 2h6.56l4.52 5.98L18.244 2Zm-1.12 18h1.77L7.02 3.9H5.13l11.994 16.1Z"/></svg></a>
+            <a class="icon-btn magnetic" href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 8.84 21.5c.5.08.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.1-1.47-1.1-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.16.57.67.48A10 10 0 0 0 12 2Z"/></svg></a>
+            <a class="icon-btn magnetic" href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.5 8h4V24h-4V8Zm7 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.1c0-1.7-.03-3.88-2.37-3.88-2.37 0-2.73 1.85-2.73 3.76V24h-4V8Z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <ul><li><a href="#features">Features</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#how">Integrations</a></li><li><a href="#">Changelog</a></li><li><a href="#">Roadmap</a></li></ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Blog</a></li><li><a href="#">Press</a></li></ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul><li><a href="#">Documentation</a></li><li><a href="#">API reference</a></li><li><a href="#">Community</a></li><li><a href="#">Support</a></li></ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">Security</a></li><li><a href="#">DPA</a></li></ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> Lumen, Inc. All rights reserved.</span>
+        <span>Crafted with precision · SOC 2 Type II · GDPR compliant</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
