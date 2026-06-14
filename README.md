@@ -45,6 +45,9 @@ accordion FAQ · gradient CTA · rich footer.
 
 ## Motion specifications
 
+- **Animated background** — slowly drifting multi-layer aurora + film-grain overlay
+- **Cinematic headline** — hero title splits into words that rise + rotate into place
+- **Skeleton → live** — dashboard KPIs shimmer as skeletons, then resolve on view
 - **Page enter** — preloader curtain + staggered hero reveal
 - **Scroll reveals** — `IntersectionObserver`, per-child stagger via `[data-stagger]`
 - **Parallax** — `[data-parallax]` orbs & floating cards, rAF-throttled
